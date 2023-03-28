@@ -1,0 +1,62 @@
+@use "../../styles/colors.scss";
+
+.main{
+    &__table{
+        margin: 4rem auto;
+    }
+}
+
+.table{
+    border-radius: 1rem;
+    border-spacing: 0;
+    color: colors.$color_white;
+    background-color: colors.$color_add-back;
+    padding: 1rem;
+    &__name{
+        padding: 1rem;
+        width: 5rem;
+        height: 3rem;
+        border-bottom: .05rem solid colors.$color_white;
+        color: colors.$color_white;
+        font-size: 1.6rem;
+    }
+    &__item{
+        min-width: 8rem;
+        height: 3rem;
+        padding: 1rem 1.5rem;
+        font-size: 1.4rem;
+        &_button{
+            max-width: 4rem;
+            text-align: center;
+        }
+    }
+}
+.item{
+    &_large{
+        min-width: 18rem;
+    }
+    &_increase{
+        align-items: center;
+        color: colors.$color_increase;
+    }
+    &_decrese{
+        color: colors.$color_decrease;
+    }
+    &__arrow{
+        padding-left: .5rem;
+    }
+}
+.button{
+    width: 2.4rem;
+    height: 2.4rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 100%;
+    background-color: colors.$color_button;
+    color: colors.$color_white;
+    transition: .3s;
+    &:hover{
+        transform: scale(0.9);
+        opacity: .8;
+    }
+}

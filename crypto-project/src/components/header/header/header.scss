@@ -1,0 +1,21 @@
+@use "../../../styles/colors.scss";
+
+.header{
+    background-color: colors.$color_add-back;
+    padding: 2rem 0;
+    &__container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__portfolio{
+        font-size: 1.8rem;
+        color: colors.$color_white;
+    }
+}
+.top{
+    display: flex;
+    column-gap: 2rem;
+    font-size: 1.8rem;
+    color: colors.$color_bright-green;
+}

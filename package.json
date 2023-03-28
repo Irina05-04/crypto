@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "react-axios": "^2.0.6",
     "sass": "^1.60.0"
   },
   "devDependencies": {
