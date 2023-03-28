@@ -11,3 +11,8 @@ export type TCoin = {
     changePercent24Hr: string,
     vwap24Hr: string
 }
+
+export type THistory = {
+    priceUsd: string,
+    time: number,
+}

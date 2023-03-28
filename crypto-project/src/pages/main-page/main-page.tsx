@@ -1,10 +1,11 @@
 import { FC, useEffect, useState } from 'react';
-import axios from 'axios';
 import {URL} from '../../const';
 
 import './main-page.scss';
 import { TCoin } from '../../type/coins';
 import { Pagination } from '../../components/header/pagination/pagination';
+import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 export const MainPage:FC = () => {
     const [error, setError] = useState(false);
@@ -39,7 +40,7 @@ export const MainPage:FC = () => {
               </tr>
               {currentItems?.map((el) => (
                 <tr key={el.id} className="table__row">
-                  <td className="table__item item item_large">{el.symbol}({el.name})</td>
+                  <td className="table__item item item_large"><NavLink to={`/${el.id}`} className="item__link">{el.symbol}({el.name})</NavLink></td>
                   <td className="table__item item">
                     {Number(el.priceUsd).toFixed(3)}&#36;
                   </td>

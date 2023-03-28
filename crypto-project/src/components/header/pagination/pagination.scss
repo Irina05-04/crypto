@@ -1,4 +1,5 @@
 @use "../../../styles/colors.scss";
+@use "../../../styles/mixin.scss";
 
 .pagination{
     display: flex;
@@ -36,14 +37,7 @@
 }
 .control{
     &__button{
-        width: 5rem;
-        height: 3rem;
-        color: colors.$color_white;
-        background-color: colors.$color_add-back;
-        border: none;
-        border-radius: .2rem;
-        cursor: pointer;
-        transition: .3s;
+        @include mixin.button(5rem, 3rem, .2rem, colors.$color_add-back, false);
         &:hover:not(:disabled){
             transform: scale(.8rem);
             opacity: .8;

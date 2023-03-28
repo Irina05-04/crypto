@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from 'react';
-import axios from 'axios';
-import './header.scss';
 import { TCoin } from '../../../type/coins';
+import axios from 'axios';
 
+import './header.scss';
 
 export const Header:FC = () => {
     const [topCrypto, setTopCrypto] = useState<TCoin[] | null>(null);

@@ -1,8 +1,15 @@
 @use "../../styles/colors.scss";
+@use "../../styles/mixin.scss";
 
 .main{
+    &__container{
+        margin-top: 3rem;
+    }
     &__table{
-        margin: 4rem auto;
+        margin: 0 auto;
+    }
+    &__pagination {
+        margin-top: 2rem;
     }
 }
 
@@ -45,18 +52,14 @@
     &__arrow{
         padding-left: .5rem;
     }
+    &__link{
+        color: colors.$color_white;
+        transition: .3s;
+        &:hover {
+            opacity: .7;
+        }
+    }
 }
 .button{
-    width: 2.4rem;
-    height: 2.4rem;
-    cursor: pointer;
-    border: none;
-    border-radius: 100%;
-    background-color: colors.$color_button;
-    color: colors.$color_white;
-    transition: .3s;
-    &:hover{
-        transform: scale(0.9);
-        opacity: .8;
-    }
+    @include mixin.button(2.4rem, 2.4rem, 100%, colors.$color_button, true);
 }
