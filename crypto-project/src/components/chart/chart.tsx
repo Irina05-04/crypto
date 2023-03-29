@@ -14,6 +14,8 @@ import { Line } from "react-chartjs-2";
 import { FormateDate } from "../../function/formatDate";
 import { THistory } from "../../type/coins";
 
+import './chart.scss';
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -35,6 +37,7 @@ ChartJS.register(
         text: 'chart on 2023 year',
       },
     },
+    maintainAspectRatio : false,
     
   };
 

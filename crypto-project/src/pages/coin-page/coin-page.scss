@@ -22,6 +22,8 @@
     column-gap: 3rem;
     &__chart{
         flex-grow: 3;
+        overflow-x: auto;
+        
     }
     @media(max-width: 900px){
         flex-direction: column;
@@ -54,9 +56,7 @@
         padding-left: 0.5rem;
     }
 }
-canvas{
-    width: 100% !important;
-}
+
 ._increase{
     color: colors.$color_increase;
 }

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import {URL} from '../../const';
 
 import './main-page.scss';
@@ -6,11 +6,14 @@ import { TCoin } from '../../type/coins';
 import { Pagination } from '../../components/header/pagination/pagination';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
-import { ModalWindow } from '../../components/modal/modal';
-import { AddCoin } from '../../components/add-coin/add-coin';
 
-export const MainPage:FC = () => {
-    const [error, setError] = useState(false);
+
+type MainPageProps = {
+  setAddCoin: Dispatch<SetStateAction<string | null>>,
+  setIsActiveModal: Dispatch<SetStateAction<boolean>>,
+}
+export const MainPage:FC<MainPageProps> = ({setIsActiveModal, setAddCoin}) => {
+    const [, setError] = useState(false);
     const [coins, setCoins] = useState<TCoin[] | null>(null);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [perPage, ] = useState(10);
@@ -18,8 +21,7 @@ export const MainPage:FC = () => {
     const indexOfLastIndex = currentPage * perPage;
     const indexOfFirstIndex = indexOfLastIndex - perPage;
     const currentItems = coins?.slice(indexOfFirstIndex, indexOfLastIndex);
-    const [isActiveModal, setIsActiveModal] = useState(false);
-    const [addCoin, setAddCoin] = useState<string | null>(null);
+
 
     useEffect(() => {
         axios.get(`${URL}/assets`)
@@ -34,7 +36,6 @@ export const MainPage:FC = () => {
     const openModal = (e: React.MouseEvent) => {
       const target = e.target as HTMLElement;
       setAddCoin(target.id);
-      const id = target.id;
       setIsActiveModal(true);
     }
 
@@ -53,7 +54,7 @@ export const MainPage:FC = () => {
                 <tr key={el.id} className="table__row">
                   <td className="table__item item item_large">
                     <NavLink to={`/${el.id}`} className="item__link">
-                      {el.symbol}({el.name})
+                      {el.symbol} ({el.name})
                     </NavLink>
                   </td>
                   <td className="table__item item">
@@ -91,12 +92,6 @@ export const MainPage:FC = () => {
             />
           </div>
         </div>
-        <ModalWindow
-          tittle='add coins'
-          component={<AddCoin name={addCoin}/>}
-          isActive={isActiveModal}
-          setIsActive={setIsActiveModal}
-        />
       </main>
     );
 }

@@ -1,7 +1,7 @@
 import axios from "axios";
 import {URL} from '../../const';
 
-import { FC, useEffect, useState } from "react"
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { TCoin, THistory } from "../../type/coins";
 
@@ -9,8 +9,13 @@ import './coin-page.scss';
 import { ChartComponent } from "../../components/chart/chart";
 import { NavLink } from "react-router-dom";
 
-export const CoinPage:FC = () => {
-    const [error, setError] = useState(false);
+type CoinPageProps = {
+  setAddCoin: Dispatch<SetStateAction<string | null>>,
+  setIsActiveModal: Dispatch<SetStateAction<boolean>>,
+}
+
+export const CoinPage:FC<CoinPageProps> = ({setAddCoin, setIsActiveModal}) => {
+    const [, setError] = useState(false);
     const [coin, setCoin] = useState<TCoin | null>(null);
     const [historyCoin, setHistoryCoin] = useState<THistory[] | null>(null);
     const {coinId} = useParams();
@@ -27,6 +32,11 @@ export const CoinPage:FC = () => {
       { name: "count active:", value: Number(coin?.maxSupply).toFixed(2) },
       { name: "24h volume:", value: Number(coin?.volumeUsd24Hr).toFixed(2) },
     ];
+
+    const openModal = () => {
+      setIsActiveModal(true);
+      setAddCoin(coin && coin?.id);
+    }
 
     useEffect(() => {
         axios.get(`${URL}/assets/${coinId}`)
@@ -62,7 +72,7 @@ export const CoinPage:FC = () => {
                   </li>
                 ))}
               </ul>
-              <button className="coin__button">add</button>
+              <button className="coin__button" onClick={openModal}>add</button>
             </div>
             <div className="coin__chart">
               <ChartComponent history={historyCoin} name={coin?.symbol} />

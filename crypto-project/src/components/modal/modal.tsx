@@ -1,4 +1,4 @@
-import { Dispatch, FC, ReactNode, SetStateAction, useState } from "react";
+import { Dispatch, FC, ReactNode, SetStateAction } from "react";
 
 import './modal.scss';
 
