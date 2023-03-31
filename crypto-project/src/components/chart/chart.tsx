@@ -1,4 +1,3 @@
-import { FC } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,11 +7,11 @@ import {
   Title,
   Tooltip,
   Legend,
-} from "chart.js";
+} from 'chart.js';
 
-import { Line } from "react-chartjs-2";
-import { FormateDate } from "../../function/formatDate";
-import { THistory } from "../../type/coins";
+import { Line } from 'react-chartjs-2';
+import { FormateDate } from '../../function/formatDate';
+import { THistory } from '../../type/coins';
 
 import './chart.scss';
 
@@ -45,7 +44,7 @@ type ChartComponentProps = {
     history: THistory[] | null,
     name: string | undefined,
 }
-export const ChartComponent:FC<ChartComponentProps> = ({history, name}) => {
+export const ChartComponent = ({history, name}: ChartComponentProps) => {
     const dataArray: string[] = [];
     const labels: string[] = [];
     

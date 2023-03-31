@@ -1,21 +1,23 @@
-import axios from "axios";
-import {URL} from '../../const';
-
-import { Dispatch, FC, SetStateAction, useEffect, useState } from "react"
-import { useParams } from "react-router-dom";
-import { TCoin, THistory } from "../../type/coins";
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { useParams, NavLink } from 'react-router-dom';
+import { TCoin, THistory } from '../../type/coins';
+import { ChartComponent } from '../../components/chart/chart';
+import axios from 'axios';
+import { URL } from "../../const";
 
 import './coin-page.scss';
-import { ChartComponent } from "../../components/chart/chart";
-import { NavLink } from "react-router-dom";
 
 type CoinPageProps = {
-  setAddCoin: Dispatch<SetStateAction<string | null>>,
-  setIsActiveModal: Dispatch<SetStateAction<boolean>>,
-}
+  setStateModal: Dispatch<
+    SetStateAction<{
+      isActivePortfolio: boolean;
+      isActiveModal: boolean;
+      addCoin: string;
+    }>
+  >;
+};
 
-export const CoinPage:FC<CoinPageProps> = ({setAddCoin, setIsActiveModal}) => {
-    const [, setError] = useState(false);
+export const CoinPage = ({setStateModal}: CoinPageProps) => {
     const [coin, setCoin] = useState<TCoin | null>(null);
     const [historyCoin, setHistoryCoin] = useState<THistory[] | null>(null);
     const {coinId} = useParams();
@@ -34,8 +36,11 @@ export const CoinPage:FC<CoinPageProps> = ({setAddCoin, setIsActiveModal}) => {
     ];
 
     const openModal = () => {
-      setIsActiveModal(true);
-      setAddCoin(coin && coin?.id);
+      setStateModal((prev) => ({
+        ...prev,
+        isActiveModal: true,
+        addCoin: coin ? coin?.id : '',
+      }));
     }
 
     useEffect(() => {
@@ -43,18 +48,18 @@ export const CoinPage:FC<CoinPageProps> = ({setAddCoin, setIsActiveModal}) => {
         .then(({data}) => {
             setCoin(data.data);
         })
-        .catch(() => {setError(true)});
         axios.get(`${URL}/assets/${coinId}/history?interval=d1&start=${Number(startDay)}&end=${Date.now()}`)
         .then(({data}) => {
             setHistoryCoin(data.data);
         })
-        .catch(() => {setError(true)});
     }, [coinId])
 
     return (
       <main className="main">
         <div className="main__container">
-          <NavLink to='/' className='main__link'>&#8592;</NavLink>
+          <NavLink to="/" className="main__link">
+            &#8592;
+          </NavLink>
           <h1 className="main__title">{coin?.name}</h1>
           <div className="coin">
             <div className="coin__about">
@@ -66,13 +71,19 @@ export const CoinPage:FC<CoinPageProps> = ({setAddCoin, setIsActiveModal}) => {
                     {el.name === "24h change:" && (
                       <span className={el.increase ? "_increase" : "_decrease"}>
                         {el.value}
-                        {el.increase ? (<span className="arrow">&#8593;</span>) : (<span className="arrow">&#8595;</span>)}
+                        {el.increase ? (
+                          <span className="arrow">&#8593;</span>
+                        ) : (
+                          <span className="arrow">&#8595;</span>
+                        )}
                       </span>
                     )}
                   </li>
                 ))}
               </ul>
-              <button className="coin__button" onClick={openModal}>add</button>
+              <button className="coin__button" onClick={openModal}>
+                add
+              </button>
             </div>
             <div className="coin__chart">
               <ChartComponent history={historyCoin} name={coin?.symbol} />
