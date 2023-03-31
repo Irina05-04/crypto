@@ -1,0 +1,50 @@
+@use "../../styles/colors.scss";
+@use "../../styles/mixin.scss";
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    column-gap: .2rem;
+    &__item{
+        padding: .5rem;
+        border: 1px solid colors.$color_add-back;
+        background-color: colors.$color_add-back;
+        color: colors.$color_white;
+        opacity: 0.6;
+        border-radius: .2rem;
+        font-size: 1.6rem;
+        cursor: pointer;
+        &:hover{
+            transform: scale(0.9);
+            opacity: .4;
+        }
+        &_active{
+            background-color: colors.$color_add-back;
+            color: colors.$color_white;
+            border-color: colors.$color_white;
+            transition: .3s;
+            opacity: 1;
+            &:hover{
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    }
+    &__dots{
+        color: colors.$color_white;
+        padding: 1.5rem .5rem 0rem .5rem;
+    }
+}
+.control{
+    &__button{
+        @include mixin.button(5rem, 3rem, .2rem, colors.$color_add-back, false);
+        &:hover:not(:disabled){
+            transform: scale(.8rem);
+            opacity: .8;
+        }
+        &:disabled{
+            cursor: auto;
+            opacity: .6;
+        }
+    }
+}

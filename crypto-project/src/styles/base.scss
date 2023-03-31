@@ -1,0 +1,25 @@
+@use './colors.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 10px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+body { 
+    background-color: colors.$color_background;
+}
+[class*="__container"]{
+    max-width: 1140px;
+    margin: 0px auto;
+    padding: 0 15px;
+}
+ul {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}

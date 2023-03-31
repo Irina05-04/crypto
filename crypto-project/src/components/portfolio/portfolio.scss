@@ -1,0 +1,28 @@
+@use "../../styles/colors.scss";
+@use "../../styles/mixin.scss";
+
+.portfolio {
+    max-height: 40rem;
+    overflow-y: auto;
+    &__table{
+        margin: 0 auto;
+    }
+    &__info{
+        font-size: 1.8rem;
+        color: colors.$color_white;
+        text-align: center;
+        opacity: .6;
+        padding: 3rem 0;
+    }
+}
+.row {
+    &__item{
+        min-width: 3rem;
+        color: colors.$color_white;
+        font-size: 1.6rem;
+        padding: 1rem 2rem;
+    }
+    &__button{
+        @include mixin.button(5rem, 2rem, .5rem, colors.$color_button, true);
+    }
+}
