@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useContext, useState } from "react";
+import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import axios from 'axios';
 import { PortfolioContext } from '../../context';
 import { URL } from '../../const';
@@ -57,8 +57,7 @@ export const AddCoin = ({ stateModal, setStateModal }: AddCoinProps) => {
         setState((prev) => ({
           ...prev,
           portfolio: [...state.portfolio, obj],
-          total: (state.total +
-            Number(value) * Number(data.data.priceUsd))
+          total: state.total + Number(value) * Number(data.data.priceUsd),
         }));
       }
     });
@@ -78,7 +77,7 @@ export const AddCoin = ({ stateModal, setStateModal }: AddCoinProps) => {
       />
       <button
         className="form__button"
-        disabled={!value || valid.includes(value) ? true : false}
+        disabled={!value || valid.includes(value) || Number.isNaN(Number(value)) ? true : false}
         onClick={addCoins}
       >
         add

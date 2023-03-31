@@ -1,4 +1,4 @@
-import { TCoin } from "./coins"
+import { TCoin, THistory } from "./coins"
 
 export type TPortfolio = {
     name: string,
@@ -16,4 +16,8 @@ export type TMainPageStore = {
   coins: TCoin[] | null,
   perPage: number,
   totalCount: number,
+}
+export type TCoinStore = {
+    coin: TCoin | null,
+    historyCoin: THistory[] | null,
 }
