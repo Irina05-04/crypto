@@ -8,8 +8,7 @@ import { Portfolio } from './components/portfolio/portfolio';
 import {TPortfolio, TStoreApp} from './type/store'
 import { PortfolioContext } from './context';
 import { Header } from './components/header/header';
-import axios from 'axios';
-import { URL } from "./const";
+import { getCoin } from './request';
 
 
 export const App = () => {
@@ -34,25 +33,25 @@ export const App = () => {
   useEffect(() => {
     if (store) {
     const storeArray = JSON.parse(store);
-      storeArray.map(
-        (el: TPortfolio) => {
-          axios.get(`${URL}/assets/${el.name}`).then(({ data }) => {
-            const obj = {
-              name: el.name,
-              amount: el.amount,
-              price: Number(data.data.priceUsd),
-            };
-            setState((prev) => ({
-              ...prev,
-              portfolio: [...prev.portfolio, obj],
-              oldTotal: prev.oldTotal + el.amount * el.price,
-              newTotal: prev.newTotal + el.amount * Number(data.data.priceUsd),
-              total: prev.total + el.amount * Number(data.data.priceUsd),
-            }));
-          });
-        });        
-      }
-  }, []);
+    storeArray.map(
+      async (el: TPortfolio) => {
+        const response = await getCoin(el.name);
+        const obj = {
+          name: el.name,
+          amount: el.amount,
+          price: Number(response.data.data.priceUsd),
+        };
+        setState((prev) => ({
+          ...prev,
+          portfolio: [...prev.portfolio, obj],
+          oldTotal: prev.oldTotal + el.amount * el.price,
+          newTotal:
+            prev.newTotal + el.amount * Number(response.data.data.priceUsd),
+          total:
+            prev.total + el.amount * Number(response.data.data.priceUsd),
+        }));
+    });
+  }}, []);
 
   useEffect(() => {
     localStorage.setItem("store", JSON.stringify(state.portfolio));

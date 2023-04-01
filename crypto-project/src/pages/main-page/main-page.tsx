@@ -1,12 +1,10 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 import { TMainPageStore } from '../../type/store';
 import { Pagination } from '../../components/pagination/pagination';
-import {URL} from '../../const';
-import axios from 'axios';
+import { getCoinsOnPage, getCountCoins } from '../../request';
 
 import './main-page.scss';
-
 
 type MainPageProps = {
   setStateModal: Dispatch<
@@ -27,17 +25,26 @@ export const MainPage = ({ setStateModal }: MainPageProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const indexOfLastIndex = currentPage * state.perPage;
   const indexOfFirstIndex = indexOfLastIndex - state.perPage;
-  const currentItems = state.coins?.slice(indexOfFirstIndex, indexOfLastIndex);
 
-  useEffect(() => {
-    axios.get(`${URL}/assets`).then(({ data }) => {
+  useEffect(()=>{
+    (async() => {
+      const response = await getCountCoins();
       setState((prev) => ({
         ...prev,
-        coins: data.data,
-        totalCount: data.data.length,
+        totalCount: response.data.data.length,
       }));
-    });
-  }, []);
+    })();
+  }, [])
+
+  useEffect(() => {
+    (async() => {
+      const response  = await getCoinsOnPage(indexOfFirstIndex, state.perPage);
+      setState((prev) => ({
+        ...prev,
+        coins: response.data.data,
+      }));
+    })();
+  }, [currentPage]);
 
   const openModal = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -59,7 +66,7 @@ export const MainPage = ({ setStateModal }: MainPageProps) => {
               <th className="table__name">change</th>
               <th className="table__name"> </th>
             </tr>
-            {currentItems?.map((el) => (
+            {state.coins?.map((el) => (
               <tr key={el.id} className="table__row">
                 <td className="table__item item item_large">
                   <NavLink to={`/${el.id}`} className="item__link">

@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction, useContext, useState } from 'react';
-import axios from 'axios';
 import { PortfolioContext } from '../../context';
-import { URL } from '../../const';
+import { getCoin } from '../../request';
 
 import './add-coin.scss';
 
@@ -23,20 +22,20 @@ export const AddCoin = ({ stateModal, setStateModal }: AddCoinProps) => {
   const portfolio = state.portfolio;
 
   const inputPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/[^\\.0-9]/g, "");
-    setValue(value);
+    setValue(e.target.value);
   };
 
-  const addCoins = () => {
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
     setStateModal(prev => ({...prev, isActiveModal: false }));
-    axios.get(`${URL}/assets/${stateModal.addCoin}`).then(({ data }) => {
+    const response = await getCoin(stateModal.addCoin);
       if (portfolio.find((el) => el.name === stateModal.addCoin)) {
         const search = portfolio.find((el) => el.name === stateModal.addCoin);
         const buff = portfolio.filter((el) => el.name !== stateModal.addCoin);
         const obj = {
           name: stateModal.addCoin as string,
           amount: Number(value) + Number(search?.amount),
-          price: Number(data.data.priceUsd),
+          price: Number(response.data.data.priceUsd),
         };
         buff.push(obj);
         setState((prev) => ({
@@ -45,31 +44,32 @@ export const AddCoin = ({ stateModal, setStateModal }: AddCoinProps) => {
           total:
             state.total +
             (Number(value) + Number(search?.amount)) *
-              Number(data.data.priceUsd) -
+              Number(response.data.data.priceUsd) -
             Number(search?.amount) * Number(search?.price),
         }));
       } else {
         const obj = {
           name: stateModal.addCoin as string,
           amount: Number(value),
-          price: Number(data.data.priceUsd),
+          price: Number(response.data.data.priceUsd),
         };
         setState((prev) => ({
           ...prev,
           portfolio: [...state.portfolio, obj],
-          total: state.total + Number(value) * Number(data.data.priceUsd),
+          total:
+            state.total + Number(value) * Number(response.data.data.priceUsd),
         }));
       }
-    });
     setValue("");
   };
 
   return (
-    <div className="form">
+    <form className="form" onSubmit={handleSubmit}>
       <p className="form__name-coin">{stateModal.addCoin}</p>
       <input
         autoFocus
-        type="text"
+        type="number"
+        step='any'
         placeholder="enter amount"
         className="form__input"
         value={value}
@@ -77,11 +77,11 @@ export const AddCoin = ({ stateModal, setStateModal }: AddCoinProps) => {
       />
       <button
         className="form__button"
+        type='submit'
         disabled={!value || valid.includes(value) || Number.isNaN(Number(value)) ? true : false}
-        onClick={addCoins}
       >
         add
       </button>
-    </div>
+    </form>
   );
 };
