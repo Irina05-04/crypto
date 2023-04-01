@@ -2,8 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useParams, NavLink } from 'react-router-dom';
 import { TCoinStore } from '../../type/store';
 import { ChartComponent } from '../../components/chart/chart';
-import axios from 'axios';
-import { URL } from "../../const";
+import { getCoin, getHistoryCoin } from '../../request';
 
 import './coin-page.scss';
 
@@ -22,7 +21,7 @@ export const CoinPage = ({setStateModal}: CoinPageProps) => {
     coin: null,
     historyCoin: null,
   });
-  const {coinId} = useParams();
+  const { coinId } = useParams();
   const startDay = new Date(2023, 0, 1);
   const coinInformation = [
     { name: "shortName:", value: state.coin?.symbol },
@@ -33,26 +32,33 @@ export const CoinPage = ({setStateModal}: CoinPageProps) => {
       increase: Number(state.coin?.changePercent24Hr) > 0 ? true : false,
     },
     { name: "count active:", value: Number(state.coin?.maxSupply).toFixed(2) },
-    { name: "24h volume:", value: Number(state.coin?.volumeUsd24Hr).toFixed(2) },
+    {
+      name: "24h volume:",
+      value: Number(state.coin?.volumeUsd24Hr).toFixed(2),
+    },
   ];
 
   const openModal = () => {
     setStateModal((prev) => ({
       ...prev,
       isActiveModal: true,
-      addCoin: state.coin ? state.coin?.id : '',
+      addCoin: state.coin ? state.coin?.id : "",
     }));
-  }
+  };
   useEffect(() => {
-      axios.get(`${URL}/assets/${coinId}`)
-      .then(({data}) => {
-        setState(prev => ({...prev, coin: data.data}));
-      })
-      axios.get(`${URL}/assets/${coinId}/history?interval=d1&start=${Number(startDay)}&end=${Date.now()}`)
-      .then(({data}) => {
-        setState(prev => ({...prev, historyCoin: data.data}));
-      })
-  }, [coinId])
+    (async () => {
+      if (coinId) {
+        const response = await getCoin(coinId);
+        setState((prev) => ({ ...prev, coin: response.data.data }));
+        const responseHistory = await getHistoryCoin(coinId, startDay);
+        setState((prev) => ({
+          ...prev,
+          historyCoin: responseHistory.data.data,
+        }));
+      }
+    })();
+  }, [coinId]);
+
   return (
     <main className="main">
       <div className="main__container">
@@ -85,7 +91,10 @@ export const CoinPage = ({setStateModal}: CoinPageProps) => {
             </button>
           </div>
           <div className="coin__chart">
-            <ChartComponent history={state.historyCoin} name={state.coin?.symbol} />
+            <ChartComponent
+              history={state.historyCoin}
+              name={state.coin?.symbol}
+            />
           </div>
         </div>
       </div>

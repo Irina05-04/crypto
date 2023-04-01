@@ -7,8 +7,7 @@ import {
 } from 'react';
 import { TCoin } from '../../type/coins';
 import { PortfolioContext } from '../../context';
-import axios from 'axios';
-import {URL} from '../../const';
+import { getTopCoins } from '../../request';
 
 import './header.scss';
 
@@ -28,11 +27,10 @@ export const Header = ({ setStateModal }: HeaderProps) => {
   const { total, oldTotal, newTotal } = stateInfo.state;
 
   useEffect(() => {
-    axios
-      .get(`${URL}/assets?limit=3`)
-      .then(({ data }) => {
-        setTopCrypto(data.data);
-      })
+    (async () => {
+      const response = await getTopCoins();
+      setTopCrypto(response.data.data);
+    })();
   }, []);
 
   return (
