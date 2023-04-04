@@ -1,5 +1,5 @@
 import axios from "axios";
-import {URL} from './const';
+import {URL} from '../const/const';
 
 export function getCountCoins () {
     return axios.get(`${URL}/assets`);   

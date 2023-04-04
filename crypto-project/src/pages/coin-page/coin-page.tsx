@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { useParams, NavLink } from 'react-router-dom';
-import { TCoinStore } from '../../type/store';
+import { useParams, NavLink, useNavigate } from 'react-router-dom';
+import { TCoinStore } from '../../models/store';
 import { ChartComponent } from '../../components/chart/chart';
-import { getCoin, getHistoryCoin } from '../../request';
+import { getCoin, getHistoryCoin } from '../../api/request';
 
 import './coin-page.scss';
 
@@ -17,6 +17,7 @@ type CoinPageProps = {
 };
 
 export const CoinPage = ({setStateModal}: CoinPageProps) => {
+  const navigate = useNavigate();
   const [state, setState] = useState<TCoinStore>({
     coin: null,
     historyCoin: null,
@@ -46,23 +47,22 @@ export const CoinPage = ({setStateModal}: CoinPageProps) => {
     }));
   };
   useEffect(() => {
-    (async () => {
-      if (coinId) {
-        const response = await getCoin(coinId);
-        setState((prev) => ({ ...prev, coin: response.data.data }));
-        const responseHistory = await getHistoryCoin(coinId, startDay);
-        setState((prev) => ({
-          ...prev,
-          historyCoin: responseHistory.data.data,
-        }));
-      }
-    })();
+    if(coinId){
+      Promise.all([getCoin(coinId), getHistoryCoin(coinId, startDay)]).then(
+        (data) => {
+          setState(() => ({
+            coin: data[0].data.data,
+            historyCoin: data[1].data.data,
+          }));
+        }
+      );
+    }
   }, [coinId]);
 
   return (
     <main className="main">
       <div className="main__container">
-        <NavLink to="/" className="main__link">
+        <NavLink to="/" className="main__link" onClick={() => navigate(-1)}>
           &#8592;
         </NavLink>
         <h1 className="main__title">{state.coin?.name}</h1>

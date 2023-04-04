@@ -9,15 +9,14 @@ export const Portfolio = () => {
   const portfolio = state.portfolio;
   
   const deleteCoin = (e: React.MouseEvent) => {
-      const target = e.target as HTMLButtonElement;
-      const search = portfolio.find(el => el.name === target.id);
-      const buff = portfolio.filter(el => el.name !== target.id);
-      setState((prev) => ({
-        ...prev,
-        portfolio: buff,
-        total: (state.total -=
-          Number(search?.price) * Number(search?.amount)),
-      }));
+    const target = e.target as HTMLButtonElement;
+    const search = portfolio.find(el => el.name === target.id);
+    const buff = portfolio.filter(el => el.name !== target.id);
+    setState((prev) => ({
+      ...prev,
+      portfolio: buff,
+      total: (state.total -= Number(search?.price) * Number(search?.amount)),
+    }));
   }
   return (
     <div className="portfolio">

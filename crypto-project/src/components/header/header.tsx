@@ -5,9 +5,9 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { TCoin } from '../../type/coins';
+import { Coin } from "../../models/coins";
 import { PortfolioContext } from '../../context';
-import { getTopCoins } from '../../request';
+import { getTopCoins } from '../../api/request';
 
 import './header.scss';
 
@@ -21,9 +21,8 @@ type HeaderProps = {
   >;
 };
 export const Header = ({ setStateModal }: HeaderProps) => {
-  const [topCrypto, setTopCrypto] = useState<TCoin[] | null>(null);
+  const [topCrypto, setTopCrypto] = useState<Coin[] | null>(null);
   const {stateInfo} = useContext(PortfolioContext);
-
   const { total, oldTotal, newTotal } = stateInfo.state;
 
   useEffect(() => {
@@ -45,11 +44,12 @@ export const Header = ({ setStateModal }: HeaderProps) => {
         </ul>
         <div
           className="header__portfolio"
-          onClick={() => setStateModal(prev => ({...prev, isActivePortfolio: true}))}
+          onClick={() =>
+            setStateModal((prev) => ({ ...prev, isActivePortfolio: true }))
+          }
         >
-          {total.toFixed(3)} USD{" "}
-          {newTotal - oldTotal >= 0 ? " +" : " "}
-          {oldTotal && (newTotal - oldTotal).toFixed(2)}(
+          {total.toFixed(3)} USD {newTotal - oldTotal >= 0 ? " +" : " "}
+          {oldTotal && (newTotal - oldTotal).toFixed(3)}(
           {oldTotal && Math.abs(100 - (newTotal * 100) / oldTotal).toFixed(2)})%
         </div>
       </div>

@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { TMainPageStore } from '../../type/store';
+import { NavLink, useParams } from 'react-router-dom';
+import { TMainPageStore } from '../../models/store';
 import { Pagination } from '../../components/pagination/pagination';
-import { getCoinsOnPage, getCountCoins } from '../../request';
+import { getCoinsOnPage, getCountCoins } from '../../api/request';
 
 import './main-page.scss';
 
@@ -22,7 +22,8 @@ export const MainPage = ({ setStateModal }: MainPageProps) => {
     perPage: 10,
     totalCount: 0,
   });
-  const [currentPage, setCurrentPage] = useState(1);
+  const { pageId } = useParams();
+  const currentPage = Number(pageId) ?? 1;
   const indexOfLastIndex = currentPage * state.perPage;
   const indexOfFirstIndex = indexOfLastIndex - state.perPage;
 
@@ -69,7 +70,7 @@ export const MainPage = ({ setStateModal }: MainPageProps) => {
             {state.coins?.map((el) => (
               <tr key={el.id} className="table__row">
                 <td className="table__item item item_large">
-                  <NavLink to={`/${el.id}`} className="item__link">
+                  <NavLink to={`/${currentPage}/${el.id}`} className="item__link">
                     {el.symbol} ({el.name})
                   </NavLink>
                 </td>
@@ -108,7 +109,6 @@ export const MainPage = ({ setStateModal }: MainPageProps) => {
             coinsCount={state.totalCount}
             perPage={state.perPage}
             currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
           />
         </div>
       </div>
