@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import './pagination.scss';
 
@@ -6,47 +7,44 @@ type PaginationProps = {
   coinsCount: number;
   perPage: number;
   currentPage: number;
-  setCurrentPage: Dispatch<SetStateAction<number>>;
 };
-export const Pagination = ({
-  coinsCount,
-  perPage,
-  currentPage,
-  setCurrentPage,
-}: PaginationProps) => {
+export const Pagination = ({ coinsCount, perPage, currentPage }: PaginationProps) => {
   const [state, setState] = useState({
     pageNumberLimit: 5,
     maxPageNumberLimit: 5,
     minPageNumberLimit: 1,
   });
+  const changeView = (currentPage: number) => {
+    if(currentPage > state.maxPageNumberLimit){
+      setState((prev) => ({
+        ...prev,
+        maxPageNumberLimit: state.maxPageNumberLimit + state.pageNumberLimit,
+        minPageNumberLimit: state.minPageNumberLimit + state.pageNumberLimit,
+      }));
+    }
+  }
+  useEffect(() => {
+    changeView(currentPage);
+  }, []);
+  const navigate = useNavigate();
 
   const pages = [];
   for (let i = 1; i <= Math.ceil(coinsCount / perPage); i++) {
     pages.push(i);
   }
 
-  const handelClick = (e: React.MouseEvent) => {
-    const target = e.target as HTMLElement;
-    setCurrentPage(Number(target.textContent));
-  };
   const handleNext = () => {
-    setCurrentPage((prev) => (prev += 1));
-    if (currentPage + 1 > state.maxPageNumberLimit) {
-      setState((prev) => ({
-        ...prev,
-        maxPageNumberLimit: state.maxPageNumberLimit + state.pageNumberLimit,
-        minPageNumberLimit: state.minPageNumberLimit + state.pageNumberLimit
-      }));
-    }
+    navigate(`/${currentPage + 1}`);
+    changeView(currentPage + 1);
   };
   const handlePrev = () => {
-    setCurrentPage((prev) => (prev -= 1));
+    navigate(`/${currentPage - 1}`);
     if ((currentPage - 1) % state.pageNumberLimit === 0) {
-        setState((prev) => ({
-            ...prev,
-            maxPageNumberLimit: state.maxPageNumberLimit - state.pageNumberLimit,
-            minPageNumberLimit: state.minPageNumberLimit - state.pageNumberLimit
-          }));
+      setState((prev) => ({
+        ...prev,
+        maxPageNumberLimit: state.maxPageNumberLimit - state.pageNumberLimit,
+        minPageNumberLimit: state.minPageNumberLimit - state.pageNumberLimit,
+      }));
     }
   };
 
@@ -54,17 +52,17 @@ export const Pagination = ({
     (el) =>
       el < state.maxPageNumberLimit + 1 &&
       el >= state.minPageNumberLimit && (
-        <li
+        <NavLink
+          to={`/${el}`}
           className={
             currentPage === el
               ? "pagination__item pagination__item_active"
               : "pagination__item"
           }
           key={el}
-          onClick={handelClick}
         >
           {el}
-        </li>
+        </NavLink>
       )
   );
 

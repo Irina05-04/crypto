@@ -10,8 +10,8 @@ import {
 } from 'chart.js';
 
 import { Line } from 'react-chartjs-2';
-import { FormateDate } from '../../function/formatDate';
-import { THistory } from '../../type/coins';
+import { FormateDate } from '../../utils/format-date';
+import { History } from "../../models/coins";
 
 import './chart.scss';
 
@@ -41,17 +41,17 @@ ChartJS.register(
   };
 
 type ChartComponentProps = {
-    history: THistory[] | null,
-    name: string | undefined,
-}
+  history: History[] | null;
+  name: string | undefined;
+};
 export const ChartComponent = ({history, name}: ChartComponentProps) => {
-    const dataArray: string[] = [];
-    const labels: string[] = [];
+  const dataArray: string[] = [];
+  const labels: string[] = [];
     
-    history?.map(el => {
-        dataArray.push(el.priceUsd);
-        labels.push(FormateDate(el.time));
-    })
+  history?.map(el => {
+      dataArray.push(el.priceUsd);
+      labels.push(FormateDate(el.time));
+  })
 
   const data = {
     labels: labels,
@@ -64,9 +64,9 @@ export const ChartComponent = ({history, name}: ChartComponentProps) => {
     ],
   };
 
-    return (
-      <div className="chart">
-        <Line options={options} data={data} />;
-      </div>
-    );
+  return (
+    <div className="chart">
+      <Line options={options} data={data} />;
+    </div>
+  );
 }

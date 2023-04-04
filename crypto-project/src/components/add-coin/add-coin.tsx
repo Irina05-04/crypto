@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import { PortfolioContext } from '../../context';
-import { getCoin } from '../../request';
+import { getCoin } from '../../api/request';
 
 import './add-coin.scss';
 
@@ -29,13 +29,14 @@ export const AddCoin = ({ stateModal, setStateModal }: AddCoinProps) => {
     event.preventDefault();
     setStateModal(prev => ({...prev, isActiveModal: false }));
     const response = await getCoin(stateModal.addCoin);
+    const newPrice = Number(response.data.data.priceUsd);
       if (portfolio.find((el) => el.name === stateModal.addCoin)) {
         const search = portfolio.find((el) => el.name === stateModal.addCoin);
         const buff = portfolio.filter((el) => el.name !== stateModal.addCoin);
         const obj = {
           name: stateModal.addCoin as string,
           amount: Number(value) + Number(search?.amount),
-          price: Number(response.data.data.priceUsd),
+          price: newPrice,
         };
         buff.push(obj);
         setState((prev) => ({
@@ -43,8 +44,7 @@ export const AddCoin = ({ stateModal, setStateModal }: AddCoinProps) => {
           portfolio: buff,
           total:
             state.total +
-            (Number(value) + Number(search?.amount)) *
-              Number(response.data.data.priceUsd) -
+            (Number(value) + Number(search?.amount)) * newPrice -
             Number(search?.amount) * Number(search?.price),
         }));
       } else {
@@ -56,8 +56,7 @@ export const AddCoin = ({ stateModal, setStateModal }: AddCoinProps) => {
         setState((prev) => ({
           ...prev,
           portfolio: [...state.portfolio, obj],
-          total:
-            state.total + Number(value) * Number(response.data.data.priceUsd),
+          total: state.total + Number(value) * newPrice,
         }));
       }
     setValue("");
@@ -78,7 +77,7 @@ export const AddCoin = ({ stateModal, setStateModal }: AddCoinProps) => {
       <button
         className="form__button"
         type='submit'
-        disabled={!value || valid.includes(value) || Number.isNaN(Number(value)) ? true : false}
+        disabled={!value || Number(value) < 0 || valid.includes(value) || Number.isNaN(Number(value)) ? true : false}
       >
         add
       </button>
