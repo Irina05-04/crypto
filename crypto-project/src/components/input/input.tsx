@@ -1,18 +1,20 @@
+import './input.scss';
+
 type InputProps = {
     type: string,
     value: string,
-    placeholder: string,
-    onChange: () => void,
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    placeholder?: string,
     step?: string,
 }
-export const Input = ({type, value, placeholder, onChange, step}: InputProps) => {
+export const Input = ({type, value, placeholder = 'input', step = 'any', onChange}: InputProps) => {
     return (
       <input
         autoFocus
         type={type}
         step={step}
         placeholder={placeholder}
-        className="form__input"
+        className="input"
         value={value}
         onChange={onChange}
       />

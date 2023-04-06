@@ -3,6 +3,7 @@ import { PortfolioContext } from '../../context';
 
 import './portfolio.scss';
 import { Button } from '../button/button';
+import { PortfolioTable } from '../portfolio-table/portfolio-table';
 
 export const Portfolio = () => {
   const {stateInfo} = useContext(PortfolioContext);
@@ -22,21 +23,22 @@ export const Portfolio = () => {
   return (
     <div className="portfolio">
       {portfolio.length !== 0 && (
-        <table className="portfolio__table">
-          <tbody className="portfolio__body">
-            {portfolio.map((el) => (
-              <tr className="portfolio__row row" key={el.name}>
-                <td className="row__item">{el.name}</td>
-                <td className="row__item">{el.amount}</td>
-                <td className="row__item">
-                  <Button id={el.name} onClick={deleteCoin} view='square' variant='color' size='small' type='button'>
-                    delete
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <PortfolioTable childrens={portfolio} onClick={deleteCoin}/>
+        // <table className="portfolio__table">
+        //   <tbody className="portfolio__body">
+        //     {portfolio.map((el) => (
+        //       <tr className="portfolio__row row" key={el.name}>
+        //         <td className="row__item">{el.name}</td>
+        //         <td className="row__item">{el.amount}</td>
+        //         <td className="row__item">
+        //           <Button id={el.name} onClick={deleteCoin} view='square' variant='color' size='small' type='button'>
+        //             delete
+        //           </Button>
+        //         </td>
+        //       </tr>
+        //     ))}
+        //   </tbody>
+        // </table>
       )}
       {portfolio.length === 0 && <p className="portfolio__info">empty</p>}
     </div>

@@ -4,6 +4,7 @@ import { getCoin } from '../../api/request';
 
 import './add-coin.scss';
 import { Button } from '../button/button';
+import { Input } from '../input/input';
 
 type AddCoinProps = {
   stateModal: { isActiveModal: boolean; addCoin: string };
@@ -66,15 +67,7 @@ export const AddCoin = ({ stateModal, setStateModal }: AddCoinProps) => {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <p className="form__name-coin">{stateModal.addCoin}</p>
-      <input
-        autoFocus
-        type="number"
-        step='any'
-        placeholder="enter amount"
-        className="form__input"
-        value={value}
-        onChange={inputPrice}
-      />
+      <Input type='number' step='any' placeholder='enter amount' value={value} onChange={inputPrice}/>
       <Button type='submit' view='square' variant='color' size='large' disabled={!value || Number(value) < 0 || valid.includes(value) || Number.isNaN(Number(value)) ? true : false}>add</Button>
     </form>
   );

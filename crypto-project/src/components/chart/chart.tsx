@@ -49,7 +49,7 @@ export const ChartComponent = ({history, name}: ChartComponentProps) => {
   const labels: string[] = [];
     
   history?.map(el => {
-      dataArray.push(el.priceUsd);
+      dataArray.push(el.value);
       labels.push(FormateDate(el.time));
   })
 

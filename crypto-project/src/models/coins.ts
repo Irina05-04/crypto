@@ -13,6 +13,6 @@ export type Coin = {
 };
 
 export type History = {
-  priceUsd: string;
+  value: string;
   time: number;
 };
