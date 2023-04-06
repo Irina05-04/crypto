@@ -67,6 +67,3 @@
         }
     }
 }
-.button{
-    @include mixin.button(2.4rem, 2.4rem, 100%, colors.$color_button, true);
-}

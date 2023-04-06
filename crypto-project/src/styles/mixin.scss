@@ -1,15 +1,10 @@
 @use './colors.scss';
 
-@mixin button($width, $height, $radius, $color, $scale){
-    width: $width;
-    height: $height;
+@mixin button($color, $scale){
     background-color: $color;
     color: colors.$color_white;
-    border: none;
-    cursor: pointer;
-    border-radius: $radius;
     transition: .3s;
-    &:hover{
+    &:hover:not(:disabled){
         opacity: .6;
         @if($scale != false){
             transform: scale(.95);

@@ -19,14 +19,4 @@
         padding-left: 1rem;
         margin-bottom: 2rem;
     }
-    &__button {
-        @include mixin.button(100%, 3rem, 1rem, colors.$color_button, true);
-        &:disabled{
-            cursor: auto;
-            opacity: .4;
-        }
-        &:hover {
-            transform: scale(1);
-        } 
-    }
 }

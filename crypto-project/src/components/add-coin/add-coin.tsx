@@ -3,6 +3,7 @@ import { PortfolioContext } from '../../context';
 import { getCoin } from '../../api/request';
 
 import './add-coin.scss';
+import { Button } from '../button/button';
 
 type AddCoinProps = {
   stateModal: { isActiveModal: boolean; addCoin: string };
@@ -74,13 +75,7 @@ export const AddCoin = ({ stateModal, setStateModal }: AddCoinProps) => {
         value={value}
         onChange={inputPrice}
       />
-      <button
-        className="form__button"
-        type='submit'
-        disabled={!value || Number(value) < 0 || valid.includes(value) || Number.isNaN(Number(value)) ? true : false}
-      >
-        add
-      </button>
+      <Button type='submit' view='square' variant='color' size='large' disabled={!value || Number(value) < 0 || valid.includes(value) || Number.isNaN(Number(value)) ? true : false}>add</Button>
     </form>
   );
 };

@@ -32,11 +32,6 @@
     &__information{
         margin-bottom: 2rem;
     }
-    &__button{
-        @include mixin.button(20rem, 3rem, 2rem, colors.$color_button, true);
-        background-color: colors.$color_button;
-        border-radius: 2rem;
-    }
 }
 .information {
     display: flex;

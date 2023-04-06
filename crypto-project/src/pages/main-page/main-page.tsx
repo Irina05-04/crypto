@@ -5,6 +5,7 @@ import { Pagination } from '../../components/pagination/pagination';
 import { getCoinsOnPage, getCountCoins } from '../../api/request';
 
 import './main-page.scss';
+import { Button } from '../../components/button/button';
 
 type MainPageProps = {
   setStateModal: Dispatch<
@@ -70,7 +71,10 @@ export const MainPage = ({ setStateModal }: MainPageProps) => {
             {state.coins?.map((el) => (
               <tr key={el.id} className="table__row">
                 <td className="table__item item item_large">
-                  <NavLink to={`/${currentPage}/${el.id}`} className="item__link">
+                  <NavLink
+                    to={`/${currentPage}/${el.id}`}
+                    className="item__link"
+                  >
                     {el.symbol} ({el.name})
                   </NavLink>
                 </td>
@@ -92,13 +96,9 @@ export const MainPage = ({ setStateModal }: MainPageProps) => {
                   )}
                 </td>
                 <td className="table__item_button item">
-                  <button
-                    className="item__button button"
-                    id={el.id}
-                    onClick={openModal}
-                  >
+                  <Button id={el.id} onClick={openModal} variant='color' view='round' size='round-size' type='button'>
                     &#43;
-                  </button>
+                  </Button>
                 </td>
               </tr>
             ))}

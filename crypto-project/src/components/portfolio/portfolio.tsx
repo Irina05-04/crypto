@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { PortfolioContext } from '../../context';
 
 import './portfolio.scss';
+import { Button } from '../button/button';
 
 export const Portfolio = () => {
   const {stateInfo} = useContext(PortfolioContext);
@@ -28,13 +29,9 @@ export const Portfolio = () => {
                 <td className="row__item">{el.name}</td>
                 <td className="row__item">{el.amount}</td>
                 <td className="row__item">
-                  <button
-                    className="row__button"
-                    id={el.name}
-                    onClick={deleteCoin}
-                  >
+                  <Button id={el.name} onClick={deleteCoin} view='square' variant='color' size='small' type='button'>
                     delete
-                  </button>
+                  </Button>
                 </td>
               </tr>
             ))}

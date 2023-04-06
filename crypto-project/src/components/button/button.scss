@@ -1,0 +1,49 @@
+@use "../../styles/colors.scss";
+@use "../../styles/mixin.scss";
+
+.button {
+    border: none;
+    cursor: pointer;
+    &:disabled{
+        cursor: auto;
+        opacity: .4;
+    }
+    &:hover {
+        transform: scale(1);
+    } 
+}
+.color{
+    @include mixin.button(colors.$color_button, true);
+}
+.transparent{
+    @include mixin.button(transparent, true);
+    border: .1rem solid colors.$color_white;
+}
+
+.round{
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.square {
+   border-radius: 1rem, 
+}
+
+.large {
+    width: 100%;
+    height: 3rem;
+}
+.medium {
+    width: 5rem;
+    height: 3rem;
+}
+.small {
+    width: fit-content;
+    padding: 0 .5rem;
+}
+.round-size {
+    width: 2.4rem;
+    height: 2.4rem;
+}
+

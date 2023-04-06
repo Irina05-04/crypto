@@ -5,6 +5,7 @@ import { ChartComponent } from '../../components/chart/chart';
 import { getCoin, getHistoryCoin } from '../../api/request';
 
 import './coin-page.scss';
+import { Button } from '../../components/button/button';
 
 type CoinPageProps = {
   setStateModal: Dispatch<
@@ -86,9 +87,7 @@ export const CoinPage = ({setStateModal}: CoinPageProps) => {
                 </li>
               ))}
             </ul>
-            <button className="coin__button" onClick={openModal}>
-              add
-            </button>
+            <Button variant='color' view='round' size='round-size' onClick={openModal} type='button'>add</Button>
           </div>
           <div className="coin__chart">
             <ChartComponent

@@ -1,6 +1,7 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 import './modal.scss';
+import { Button } from '../button/button';
 
 type ModalWindowProps = {
   tittle: string;
@@ -37,9 +38,11 @@ export const ModalWindow = ({tittle, component, isActive, setIsActive}: ModalWin
           <p className="modal__title">{tittle}</p>
           <div className="modal__content">{component}</div>
         </div>
-        <button className="modal__button" type="button" onClick={onHandleClick}>
-          &times;
-        </button>
+        <div className="modal__button">
+          <Button type="button" onClick={onHandleClick} view="round" variant="transparent" size='round-size'>
+            &times;
+          </Button>
+        </div>
       </div>
     </div>
   );

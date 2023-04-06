@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import './pagination.scss';
+import { Button } from '../button/button';
 
 type PaginationProps = {
   coinsCount: number;
@@ -69,13 +70,16 @@ export const Pagination = ({ coinsCount, perPage, currentPage }: PaginationProps
   return (
     <ul className="pagination">
       <li className="pagination__control control">
-        <button
-          className="control__button"
+        <Button
+          type="button"
+          size='medium'
+          view='square'
+          variant="color"
           onClick={handlePrev}
           disabled={currentPage === pages[0] && true}
         >
           prev
-        </button>
+        </Button>
       </li>
       {state.minPageNumberLimit !== 1 && (
         <li className="pagination__dots"> &hellip; </li>
@@ -85,13 +89,16 @@ export const Pagination = ({ coinsCount, perPage, currentPage }: PaginationProps
         <li className="pagination__dots"> &hellip; </li>
       )}
       <li className="pagination__control control">
-        <button
-          className="control__button"
+        <Button
+          type="button"
+          view='square'
+          variant="color"
+          size='medium'
           onClick={handleNext}
           disabled={currentPage === pages[pages.length - 1] && true}
         >
           next
-        </button>
+        </Button>
       </li>
     </ul>
   );
