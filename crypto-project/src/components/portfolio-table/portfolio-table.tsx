@@ -12,7 +12,7 @@ export const PortfolioTable = ({childrens, onClick}: PortfolioTableProps) => {
   return (
     <table className="portfolio-table">
       <tbody className="portfolio-table__body">
-        {childrens.map(el => <PortfolioRow name={el.name} amount={el.amount} onClick={onClick}/>)}
+        {childrens.map(el => <PortfolioRow key={el.name} name={el.name} amount={el.amount} onClick={onClick}/>)}
       </tbody>
     </table>
   );

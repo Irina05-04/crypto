@@ -37,13 +37,6 @@ export const Header = ({ setStateModal }: HeaderProps) => {
     <header className="header">
       <div className="header__container">
         <List childrens={topCrypto}/>
-        {/* <ul className="header__top top">
-          {topCrypto?.map((coin) => (
-            <li className="top__item" key={coin.id}>
-              {coin.name} {Number(coin.priceUsd).toFixed(2)}&#36;
-            </li>
-          ))}
-        </ul> */}
         <div
           className="header__portfolio"
           onClick={() =>
