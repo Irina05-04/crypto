@@ -10,6 +10,7 @@ import { PortfolioContext } from '../../context';
 import { getTopCoins } from '../../api/request';
 
 import './header.scss';
+import { List } from '../list/list';
 
 type HeaderProps = {
   setStateModal: Dispatch<
@@ -35,13 +36,14 @@ export const Header = ({ setStateModal }: HeaderProps) => {
   return (
     <header className="header">
       <div className="header__container">
-        <ul className="header__top top">
+        <List childrens={topCrypto}/>
+        {/* <ul className="header__top top">
           {topCrypto?.map((coin) => (
             <li className="top__item" key={coin.id}>
               {coin.name} {Number(coin.priceUsd).toFixed(2)}&#36;
             </li>
           ))}
-        </ul>
+        </ul> */}
         <div
           className="header__portfolio"
           onClick={() =>
