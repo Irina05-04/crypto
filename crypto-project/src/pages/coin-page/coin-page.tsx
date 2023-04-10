@@ -87,7 +87,15 @@ export const CoinPage = ({setStateModal}: CoinPageProps) => {
                 </li>
               ))}
             </ul>
-            <Button variant='color' view='round' size='round-size' onClick={openModal} type='button'>add</Button>
+            <Button
+              variant="color"
+              view="square"
+              size="large"
+              onClick={openModal}
+              type="button"
+            >
+              add
+            </Button>
           </div>
           <div className="coin__chart">
             <ChartComponent

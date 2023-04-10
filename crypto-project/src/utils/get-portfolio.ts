@@ -5,7 +5,7 @@ export function GetPortfolio(storeArray: PortfolioCoin[], newTotal: {count: numb
   return Promise.all(
     storeArray.map(async (el: PortfolioCoin) => {
       const response = await getCoin(el.name);
-      newTotal.count += el.amount * el.price;
+      newTotal.count += el.amount * Number(response.data.data.priceUsd);
       const obj = {
         name: el.name,
         amount: el.amount,

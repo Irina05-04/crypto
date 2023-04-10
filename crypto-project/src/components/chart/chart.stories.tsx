@@ -15,9 +15,9 @@ export const Default: Story = {
   args: {
     name: "text",
     history: [
-      { value: "11", time: 1680750182 },
-      { value: "5", time: 1680778982 },
-      { value: "18", time: 1680786182 },
+      { priceUsd: "11", time: 1680750182 },
+      { priceUsd: "5", time: 1680778982 },
+      { priceUsd: "18", time: 1680786182 },
     ],
   },
 };

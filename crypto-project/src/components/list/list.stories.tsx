@@ -1,6 +1,6 @@
 import {List} from './list';
 import type { Meta, StoryObj } from '@storybook/react';
-import { data } from './dataList';
+import { data } from './data-list';
 
 import './list.scss';
 

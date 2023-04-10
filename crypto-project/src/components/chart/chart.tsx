@@ -49,10 +49,9 @@ export const ChartComponent = ({history, name}: ChartComponentProps) => {
   const labels: string[] = [];
     
   history?.map(el => {
-      dataArray.push(el.value);
+      dataArray.push(el.priceUsd);
       labels.push(FormateDate(el.time));
   })
-
   const data = {
     labels: labels,
     datasets: [
@@ -63,7 +62,7 @@ export const ChartComponent = ({history, name}: ChartComponentProps) => {
       },
     ],
   };
-
+  console.log(data);
   return (
     <div className="chart">
       <Line options={options} data={data} />;

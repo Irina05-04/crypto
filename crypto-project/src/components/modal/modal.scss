@@ -21,6 +21,9 @@
         background-color: colors.$color_add-back;
         border-radius: 2rem;
         padding: 2rem;
+        @media(max-width: 650px){
+            width: 28rem;
+        }
     }
     &__title{
         color: colors.$color_white;

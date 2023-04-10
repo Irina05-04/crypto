@@ -69,7 +69,7 @@ export const Pagination = ({ coinsCount, perPage, currentPage }: PaginationProps
 
   return (
     <ul className="pagination">
-      <li className="pagination__control control">
+      <li className="pagination__control control" data-dest-id="prev">
         <Button
           type="button"
           size='medium'
@@ -88,7 +88,7 @@ export const Pagination = ({ coinsCount, perPage, currentPage }: PaginationProps
       {pages.length > state.maxPageNumberLimit && (
         <li className="pagination__dots"> &hellip; </li>
       )}
-      <li className="pagination__control control">
+      <li className="pagination__control control" data-dest-id="next">
         <Button
           type="button"
           view='square'
