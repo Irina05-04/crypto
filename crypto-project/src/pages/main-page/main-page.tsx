@@ -60,20 +60,21 @@ export const MainPage = ({ setStateModal }: MainPageProps) => {
   return (
     <main className="main">
       <div className="main__container">
-        <table className="main__table table">
-          <tbody className="table__body">
-            <tr className="table__row">
+        <table className="main__table table" data-cy="coins-table">
+          <tbody className="table__body" data-cy="coins-table__body">
+            <tr className="table__row" data-cy="coins-table__caption">
               <th className="table__name">name</th>
               <th className="table__name">price</th>
               <th className="table__name">change</th>
               <th className="table__name"> </th>
             </tr>
             {state.coins?.map((el) => (
-              <tr key={el.id} className="table__row">
+              <tr key={el.id} className="table__row" data-cy="coins-table__row">
                 <td className="table__item item item_large">
                   <NavLink
                     to={`/${currentPage}/${el.id}`}
                     className="item__link"
+                    data-cy="coin-link"
                   >
                     {el.symbol} ({el.name})
                   </NavLink>
@@ -96,7 +97,15 @@ export const MainPage = ({ setStateModal }: MainPageProps) => {
                   )}
                 </td>
                 <td className="table__item_button item">
-                  <Button id={el.id} onClick={openModal} variant='color' view='round' size='round-size' type='button'>
+                  <Button
+                    id={el.id}
+                    onClick={openModal}
+                    variant="color"
+                    view="round"
+                    size="round-size"
+                    type="button"
+                    data={`add-coin_${el.id}`}
+                  >
                     &#43;
                   </Button>
                 </td>

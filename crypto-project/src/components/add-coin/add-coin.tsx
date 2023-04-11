@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import { PortfolioContext } from '../../context';
 import { getCoin } from '../../api/request';
-
-import './add-coin.scss';
 import { Button } from '../button/button';
 import { Input } from '../input/input';
+
+import './add-coin.scss';
 
 type AddCoinProps = {
   stateModal: { isActiveModal: boolean; addCoin: string };
@@ -67,8 +67,31 @@ export const AddCoin = ({ stateModal, setStateModal }: AddCoinProps) => {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <p className="form__name-coin">{stateModal.addCoin}</p>
-      <Input type='number' step='any' placeholder='enter amount' value={value} onChange={inputPrice}/>
-      <Button type='submit' view='square' variant='color' size='large' disabled={!value || Number(value) < 0 || valid.includes(value) || Number.isNaN(Number(value)) ? true : false}>add</Button>
+      <Input
+        data="input-amount"
+        type="number"
+        step="any"
+        placeholder="enter amount"
+        value={value}
+        onChange={inputPrice}
+      />
+      <Button
+        data="submit-amount"
+        type="submit"
+        view="square"
+        variant="color"
+        size="large"
+        disabled={
+          !value ||
+          Number(value) < 0 ||
+          valid.includes(value) ||
+          Number.isNaN(Number(value))
+            ? true
+            : false
+        }
+      >
+        add
+      </Button>
     </form>
   );
 };

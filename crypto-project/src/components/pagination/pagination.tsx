@@ -60,6 +60,8 @@ export const Pagination = ({ coinsCount, perPage, currentPage }: PaginationProps
               ? "pagination__item pagination__item_active"
               : "pagination__item"
           }
+          data-cy="pagination__item"
+          data-cy_active={currentPage === el ? "pagination__item_active" : ""}
           key={el}
         >
           {el}
@@ -68,12 +70,12 @@ export const Pagination = ({ coinsCount, perPage, currentPage }: PaginationProps
   );
 
   return (
-    <ul className="pagination">
-      <li className="pagination__control control" data-dest-id="prev">
+    <ul className="pagination" data-cy="pagination">
+      <li className="pagination__control control" data-cy="prev">
         <Button
           type="button"
-          size='medium'
-          view='square'
+          size="medium"
+          view="square"
           variant="color"
           onClick={handlePrev}
           disabled={currentPage === pages[0] && true}
@@ -82,18 +84,22 @@ export const Pagination = ({ coinsCount, perPage, currentPage }: PaginationProps
         </Button>
       </li>
       {state.minPageNumberLimit !== 1 && (
-        <li className="pagination__dots"> &hellip; </li>
+        <li className="pagination__dots" data-cy="pagination__dots">
+          &hellip;
+        </li>
       )}
       {renderPageNumbers}
       {pages.length > state.maxPageNumberLimit && (
-        <li className="pagination__dots"> &hellip; </li>
+        <li className="pagination__dots" data-cy="pagination__dots">
+          &hellip;
+        </li>
       )}
-      <li className="pagination__control control" data-dest-id="next">
+      <li className="pagination__control control" data-cy="next">
         <Button
           type="button"
-          view='square'
+          view="square"
           variant="color"
-          size='medium'
+          size="medium"
           onClick={handleNext}
           disabled={currentPage === pages[pages.length - 1] && true}
         >

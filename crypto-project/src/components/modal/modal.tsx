@@ -32,13 +32,13 @@ export const ModalWindow = ({tittle, component, isActive, setIsActive}: ModalWin
   }
 
   return (
-    <div className="modal" onClick={onHandleClick}>
+    <div className="modal" onClick={onHandleClick} data-cy="modal">
       <div className="modal__body">
         <div className="modal__wrapper">
           <p className="modal__title">{tittle}</p>
           <div className="modal__content">{component}</div>
         </div>
-        <div className="modal__button">
+        <div className="modal__button" data-cy="modal-close">
           <Button type="button" onClick={onHandleClick} view="round" variant="transparent" size='round-size'>
             &times;
           </Button>

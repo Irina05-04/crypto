@@ -6,9 +6,9 @@ type ListProps = {
 };
 export const List = ({childrens}: ListProps) => {
   return (
-    <ul className="list">
+    <ul className="list" data-cy="list">
       {childrens?.map((coin) => (
-        <li className="list__item" key={coin.id}>
+        <li className="list__item" data-cy="list-item" key={coin.id}>
           {coin.name} {Number(coin.priceUsd).toFixed(2)}&#36;
         </li>
       ))}

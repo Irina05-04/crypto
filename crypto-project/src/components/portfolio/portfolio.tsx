@@ -19,11 +19,15 @@ export const Portfolio = () => {
     }));
   }
   return (
-    <div className="portfolio">
+    <div className="portfolio" data-cy="portfolio">
       {portfolio.length !== 0 && (
         <PortfolioTable childrens={portfolio} onClick={deleteCoin} />
       )}
-      {portfolio.length === 0 && <p className="portfolio__info">empty</p>}
+      {portfolio.length === 0 && (
+        <p className="portfolio__info" data-cy="portfolio-empty">
+          empty
+        </p>
+      )}
     </div>
   );
 }

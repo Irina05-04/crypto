@@ -63,15 +63,26 @@ export const CoinPage = ({setStateModal}: CoinPageProps) => {
   return (
     <main className="main">
       <div className="main__container">
-        <NavLink to="/" className="main__link" onClick={() => navigate(-1)}>
+        <NavLink
+          to="/"
+          className="main__link"
+          data-cy="arrow-back"
+          onClick={() => navigate(-1)}
+        >
           &#8592;
         </NavLink>
-        <h1 className="main__title">{state.coin?.name}</h1>
+        <h1 className="main__title" data-cy="coin-name">
+          {state.coin?.name}
+        </h1>
         <div className="coin">
           <div className="coin__about">
-            <ul className="coin__information information">
+            <ul className="coin__information information" data-cy="information">
               {coinInformation.map((el) => (
-                <li className="information__item" key={el.name}>
+                <li
+                  className="information__item"
+                  data-cy="information__item"
+                  key={el.name}
+                >
                   <span className="information__name">{el.name}</span>
                   {el.name !== "24h change:" && `${el.value}`}
                   {el.name === "24h change:" && (
@@ -93,11 +104,12 @@ export const CoinPage = ({setStateModal}: CoinPageProps) => {
               size="large"
               onClick={openModal}
               type="button"
+              data="coin-add"
             >
               add
             </Button>
           </div>
-          <div className="coin__chart">
+          <div className="coin__chart" data-cy="coin-chart">
             <ChartComponent
               history={state.historyCoin}
               name={state.coin?.symbol}

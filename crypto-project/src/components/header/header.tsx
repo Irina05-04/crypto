@@ -36,9 +36,10 @@ export const Header = ({ setStateModal }: HeaderProps) => {
   return (
     <header className="header">
       <div className="header__container">
-        <List childrens={topCrypto}/>
+        <List childrens={topCrypto} />
         <div
           className="header__portfolio"
+          data-cy="header-portfolio"
           onClick={() =>
             setStateModal((prev) => ({ ...prev, isActivePortfolio: true }))
           }

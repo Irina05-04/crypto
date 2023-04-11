@@ -5,6 +5,7 @@ type ButtonProps = {
   type: "button" | "submit" | "reset" | undefined;
   variant: "color" | "transparent";
   view: "round" | "square";
+  data?: string;
   size?: "small" | "medium" | "large" | "round-size";
   onClick?: (e: React.MouseEvent) => void;
   disabled?: boolean;
@@ -18,6 +19,7 @@ export const Button = ({
   disabled,
   variant = "color",
   view = 'square',
+  data,
   size = "small",
 }: ButtonProps) => {
   return (
@@ -27,6 +29,7 @@ export const Button = ({
       onClick={onClick}
       id={id}
       disabled={disabled}
+      data-cy={data}
     >
       {children}
     </button>

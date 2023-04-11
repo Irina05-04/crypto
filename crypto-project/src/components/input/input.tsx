@@ -6,8 +6,9 @@ type InputProps = {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
     placeholder?: string,
     step?: string,
+    data? : string
 }
-export const Input = ({type, value, placeholder = 'input', step = 'any', onChange}: InputProps) => {
+export const Input = ({type, value, placeholder = 'input', step = 'any', data, onChange}: InputProps) => {
     return (
       <input
         autoFocus
@@ -17,6 +18,7 @@ export const Input = ({type, value, placeholder = 'input', step = 'any', onChang
         className="input"
         value={value}
         onChange={onChange}
+        data-cy={data}
       />
     );
 }
