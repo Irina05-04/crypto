@@ -70,7 +70,7 @@ export const Pagination = ({ coinsCount, perPage, currentPage }: PaginationProps
   );
 
   return (
-    <ul className="pagination" data-cy="pagination">
+    <ul className="pagination" data-test-id="pagination">
       <li className="pagination__control control" data-cy="prev">
         <Button
           type="button"

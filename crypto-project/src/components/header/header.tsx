@@ -39,7 +39,7 @@ export const Header = ({ setStateModal }: HeaderProps) => {
         <List childrens={topCrypto} />
         <div
           className="header__portfolio"
-          data-cy="header-portfolio"
+          data-test-id="header-portfolio"
           onClick={() =>
             setStateModal((prev) => ({ ...prev, isActivePortfolio: true }))
           }

@@ -1,0 +1,43 @@
+import { Coin } from "./models/coins";
+
+export const topCoins: Coin[] | null = [
+  {
+    id: "bitcoin",
+    rank: "1",
+    symbol: "BTC",
+    name: "Bitcoin",
+    supply: "19342287.0000000000000000",
+    maxSupply: "21000000.0000000000000000",
+    marketCapUsd: "548016923658.0299849668152180",
+    volumeUsd24Hr: "3294913349.4895636809290138",
+    priceUsd: "28332.5815431251736140",
+    changePercent24Hr: "1.1052040842057876",
+    vwap24Hr: "28310.1507297898529829",
+  },
+  {
+    id: "ethereum",
+    rank: "2",
+    symbol: "ETH",
+    name: "Ethereum",
+    supply: "120457776.0000000000000000",
+    maxSupply: "",
+    marketCapUsd: "224004552772.8270048787137840",
+    volumeUsd24Hr: "2138035096.1696763221396699",
+    priceUsd: "1859.6105640604472465",
+    changePercent24Hr: "0.8061708366270623",
+    vwap24Hr: "1859.6765497161332261",
+  },
+  {
+    id: "tether",
+    rank: "3",
+    symbol: "USDT",
+    name: "Tether",
+    supply: "80210538011.0731200000000000",
+    maxSupply: "",
+    marketCapUsd: "80408316952.1205136075658438",
+    volumeUsd24Hr: "6896884592.0159781960579222",
+    priceUsd: "1.0024657475931665",
+    changePercent24Hr: "-0.1282004644359687",
+    vwap24Hr: "1.0026569448227118",
+  },
+];

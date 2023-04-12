@@ -1,0 +1,393 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`button test List snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <button
+        class="button color small square"
+        type="button"
+      >
+        add
+      </button>
+    </div>
+  </body>,
+  "container": <div>
+    <button
+      class="button color small square"
+      type="button"
+    >
+      add
+    </button>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`input test input snapshot 1`] = `
+<input
+  class="input"
+  data-cy="input-amount"
+  placeholder="enter amount"
+  step="any"
+  type="number"
+  value=""
+/>
+`;
+
+exports[`list test List snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <ul
+        class="list"
+        data-cy="list"
+      >
+        <li
+          class="list__item"
+          data-cy="list-item"
+        >
+          Bitcoin
+           
+          28332.58
+          $
+        </li>
+        <li
+          class="list__item"
+          data-cy="list-item"
+        >
+          Ethereum
+           
+          1859.61
+          $
+        </li>
+        <li
+          class="list__item"
+          data-cy="list-item"
+        >
+          Tether
+           
+          1.00
+          $
+        </li>
+      </ul>
+    </div>
+  </body>,
+  "container": <div>
+    <ul
+      class="list"
+      data-cy="list"
+    >
+      <li
+        class="list__item"
+        data-cy="list-item"
+      >
+        Bitcoin
+         
+        28332.58
+        $
+      </li>
+      <li
+        class="list__item"
+        data-cy="list-item"
+      >
+        Ethereum
+         
+        1859.61
+        $
+      </li>
+      <li
+        class="list__item"
+        data-cy="list-item"
+      >
+        Tether
+         
+        1.00
+        $
+      </li>
+    </ul>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`list test empty list snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <ul
+        class="list"
+        data-cy="list"
+      />
+    </div>
+  </body>,
+  "container": <div>
+    <ul
+      class="list"
+      data-cy="list"
+    />
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`modal window test modal snapshot 1`] = `
+<div
+  class="modal"
+  data-cy="modal"
+  data-testid="modal"
+>
+  <div
+    class="modal__body"
+  >
+    <div
+      class="modal__wrapper"
+    >
+      <p
+        class="modal__title"
+      >
+        modal window
+      </p>
+      <div
+        class="modal__content"
+      >
+        <input
+          data-testid="input"
+        />
+      </div>
+    </div>
+    <div
+      class="modal__button"
+      data-cy="modal-close"
+    >
+      <button
+        class="button transparent round-size round"
+        type="button"
+      >
+        ×
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`portdolio table test table snapshot 1`] = `
+<table
+  class="portfolio-table"
+>
+  <tbody
+    class="portfolio-table__body"
+    data-cy="portfolio-table__body"
+  >
+    <tr
+      class="portfolio__row row"
+    >
+      <td
+        class="row__item"
+        data-cy="coin-name"
+      >
+        bitcoin
+      </td>
+      <td
+        class="row__item"
+        data-cy="coin-amount"
+      >
+        2
+      </td>
+      <td
+        class="row__item"
+        data-cy="coin-delete"
+      >
+        <button
+          class="button color small square"
+          id="bitcoin"
+          type="button"
+        >
+          delete
+        </button>
+      </td>
+    </tr>
+    <tr
+      class="portfolio__row row"
+    >
+      <td
+        class="row__item"
+        data-cy="coin-name"
+      >
+        cartana
+      </td>
+      <td
+        class="row__item"
+        data-cy="coin-amount"
+      >
+        1.1
+      </td>
+      <td
+        class="row__item"
+        data-cy="coin-delete"
+      >
+        <button
+          class="button color small square"
+          id="cartana"
+          type="button"
+        >
+          delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

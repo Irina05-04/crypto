@@ -68,7 +68,6 @@ export const AddCoin = ({ stateModal, setStateModal }: AddCoinProps) => {
     <form className="form" onSubmit={handleSubmit}>
       <p className="form__name-coin">{stateModal.addCoin}</p>
       <Input
-        data="input-amount"
         type="number"
         step="any"
         placeholder="enter amount"
